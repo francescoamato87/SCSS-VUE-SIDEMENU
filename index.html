@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueSASS-Side-Menu</title>
+        <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="./dist/css/app.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <!-- HomePage -->
+    <div id="app" class="app">
+    
+        <header>
+            <nav class="main-nav">
+                <div class="logo">
+                    <img src="./img/sass.jpg" alt="">
+                </div>
+                <Burger></Burger>
+            </nav>
+    
+    
+    
+            <Sidebar>
+                <ul class="sidebar-panel-nav">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Meet The Band</a></li>
+                    <li><a href="#contact">Live Dates</a></li>
+                    <li><a href="#Lates-News">Lates News</a></li>
+                    <li><a href="#Album">Album</a></li>
+                    <li><a href="#Fans">Fans</a></li>
+                </ul>
+            </Sidebar>
+        </header>
+    </div>
+    
+    <template id="sidebar">
+        <div class="sidebar">
+            <div class="sidebar-backdrop" @click="closeSidebarPanel" v-if="isPanelOpen"></div>
+            <transition name="slide">
+                <div v-if="isPanelOpen" class="sidebar-panel">
+                    <slot></slot>
+                </div>
+            </transition>
+        </div>
+    </template>
+    
+    <template id="burger">
+        <div id="burger" :class="{ 'active' : isBurgerActive }">
+            <slot>
+                <button type="button" class="burger-button" title="Menu" @click.prevent="toggle">
+                    <span class="hidden">Toggle menu</span>
+                    <span class="burger-bar burger-bar--1"></span>
+                    <span class="burger-bar burger-bar--2"></span>
+                    <span class="burger-bar burger-bar--3"></span>
+                </button>
+            </slot>
+        </div>
+    </template>
+
+
+<script src="./dist/js/app.js"></script>
+</body>
+</html>
